@@ -325,6 +325,11 @@
           "name": "ChoiceHistory",
           "type": "array",
           "children": []
+        },
+        {
+          "name": "CurrentRoll",
+          "type": "number",
+          "value": 0
         }
       ],
       "instances": [
@@ -1280,6 +1285,16 @@
           "actions": [
             {
               "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "CurrentRoll",
+                "=",
+                "RandomInRange(1,100)"
+              ]
+            },
+            {
+              "type": {
                 "value": "TextContainerCapability::TextContainerBehavior::SetValue"
               },
               "parameters": [
@@ -1287,36 +1302,6 @@
                 "Text",
                 "=",
                 "\"You ran away!! What Next?\""
-              ]
-            },
-            {
-              "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::SetLabelText"
-              },
-              "parameters": [
-                "PlayerChoice1",
-                "\"Run Further\"",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::SetLabelText"
-              },
-              "parameters": [
-                "PlayerChoice2",
-                "\"Lay Down\"",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::SetLabelText"
-              },
-              "parameters": [
-                "PlayerChoice3",
-                "\"Give Up!\"",
-                ""
               ]
             },
             {
@@ -1347,6 +1332,126 @@
                 "Text",
                 "=",
                 "CurrentChoice"
+              ]
+            },
+            {
+              "type": {
+                "value": "Cache"
+              },
+              "parameters": [
+                "PlayerChoice1"
+              ]
+            },
+            {
+              "type": {
+                "value": "Cache"
+              },
+              "parameters": [
+                "PlayerChoice2"
+              ]
+            },
+            {
+              "type": {
+                "value": "Cache"
+              },
+              "parameters": [
+                "PlayerChoice3"
+              ]
+            }
+          ],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "CurrentRoll",
+                    "<",
+                    "25"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                  },
+                  "parameters": [
+                    "MainStoryText",
+                    "Text",
+                    "=",
+                    "\"You Failed to Run Away!!!\""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "CurrentRoll",
+                    ">=",
+                    "25"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "CurrentRoll",
+                    "<",
+                    "75"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                  },
+                  "parameters": [
+                    "MainStoryText",
+                    "Text",
+                    "=",
+                    "\"You Made It!!!\""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "CurrentRoll",
+                    ">=",
+                    "75"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                  },
+                  "parameters": [
+                    "MainStoryText",
+                    "Text",
+                    "=",
+                    "\"You Ran Faster than Ever!!!\""
+                  ]
+                }
               ]
             }
           ]
