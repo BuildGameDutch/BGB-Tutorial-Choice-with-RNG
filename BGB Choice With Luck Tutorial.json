@@ -289,6 +289,15 @@
         "name": "default_bg.png",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "BG_small.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "BG_small.png",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -898,7 +907,7 @@
                   "sprites": [
                     {
                       "hasCustomCollisionMask": true,
-                      "image": "default_bg.png",
+                      "image": "BG_small.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
